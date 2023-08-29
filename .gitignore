@@ -1,0 +1,10 @@
+results/**
+resources/**
+logs/**
+data/**
+.snakemake
+.snakemake/**
+__pycache__
+*.par
+report.html
+.ipynb_checkpoints
