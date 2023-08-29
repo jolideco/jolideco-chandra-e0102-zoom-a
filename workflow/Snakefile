@@ -1,4 +1,22 @@
-# Main entrypoint of the workflow. 
-# Please follow the best practices: 
-# https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
-# in particular regarding the standardized folder structure mentioned there. 
+from snakemake.utils import min_version
+min_version("6.0")
+
+configfile: "config/config-e0102-zoom-a.yaml"
+
+module chandra_data_workflow:
+    snakefile:
+        # here, plain paths, URLs and the special markers for code hosting providers (see below) are possible.
+        github("adonath/snakemake-workflow-chandra", path="workflow/Snakefile", branch="main")
+    config: config["chandra-data"]
+
+use rule * from chandra_data_workflow as chandra_data_*
+
+include: "rules/prepare-spectrum.smk"
+include: "rules/run-jolideco.smk"
+
+ruleorder: prepare_spectrum > chandra_data_fit_spectra
+
+rule all:
+    input: 
+        expand("results/{config_name}/jolideco/{config_name}-result-jolideco.fits", config_name=config["chandra-data"]["name"])
+    default_target: True

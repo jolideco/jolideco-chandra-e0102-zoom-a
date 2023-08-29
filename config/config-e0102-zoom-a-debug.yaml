@@ -1,0 +1,42 @@
+chandra-data:
+  name: e0102-zoom-a
+  path_data: data
+  obs_ids:
+    - 1308
+    - 9694
+  obs_id_ref: 8365
+  roi:
+    center:
+      frame: icrs
+      lon:  "16.017d"
+      lat: "-72.034d"
+    width: 15 arcsec
+    bin_size: 0.25
+    energy_range:
+      min: 0.5 keV
+      max: 7 keV
+  psf_simulator: marx
+  irfs:
+    e0102-zoom-a:
+      spectrum:
+        center:
+          frame: icrs
+          lon: "16.017d"
+          lat: "-72.034d"
+        radius: 0.3 arcmin
+        energy_range:
+          min: 0.5 keV
+          max: 7.0 keV
+        energy_groups: 5
+        energy_step: 0.01
+      psf:
+        blur: 0.07
+        readout_streak: false
+        pileup: false
+        extended: true
+        minsize: 125
+        numiter: 2
+  ciao:
+    chandra_repro:
+      cleanup: true
+      clobber: true
