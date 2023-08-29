@@ -8,5 +8,8 @@ rule run_jolideco:
     output:
         filename_jolideco_result="results/{config_name}/jolideco/{config_name}-result-jolideco.fits",
         filename_npred_stacked="results/{config_name}/jolideco/{config_name}-npred.fits",
-    notebook:
-        "../notebooks/jolideco-deconvolution.ipynb"
+    # notebook:
+    #     "../notebooks/jolideco-deconvolution.ipynb"
+    shell:
+        cp {input[0]} {output.filename_jolideco_result}
+        cp {input[0]} {output.filename_npred_stacked}
