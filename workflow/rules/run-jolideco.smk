@@ -11,5 +11,5 @@ rule run_jolideco:
     # notebook:
     #     "../notebooks/jolideco-deconvolution.ipynb"
     shell:
-        cp {input[0]} {output.filename_jolideco_result}
-        cp {input[0]} {output.filename_npred_stacked}
+        "cp {input[0]} {output.filename_jolideco_result}"
+        "cp {input[0]} {output.filename_npred_stacked}"

@@ -12,11 +12,11 @@ module chandra_data_workflow:
 use rule * from chandra_data_workflow as chandra_data_*
 
 include: "rules/prepare-spectrum.smk"
-# include: "rules/run-jolideco.smk"
+include: "rules/run-jolideco.smk"
 
 ruleorder: prepare_spectrum > chandra_data_fit_spectra
 
 rule all:
     input: 
-        expand("results/{config_name}/{obs_id}/maps/{config_name}-result-jolideco.fits", config_name=config["chandra-data"]["name"])
+        expand("results/{config_name}/jolideco/{config_name}-result-jolideco.fits", config_name=config["chandra-data"]["name"])
     default_target: True
