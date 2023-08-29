@@ -21,6 +21,10 @@ ruleorder: prepare_spectrum > chandra_data_fit_spectra
 
 rule all:
     input: 
+<<<<<<< HEAD
        expand("results/{config_name}/{obs_id}/events-bootstrapped/{config_name}-{obs_id}-iter-{idx}-events.fits", config_name=config["chandra-data"]["name"], obs_id=config["chandra-data"]["obs_ids"], idx=range(config["bootstrap"]["n_iter"])), 
        expand("results/{config_name}/{obs_id}/maps-bootstrapped/{config_name}-{obs_id}-iter-{idx}-counts.fits", config_name=config["chandra-data"]["name"], obs_id=config["chandra-data"]["obs_ids"], idx=range(config["bootstrap"]["n_iter"])) 
+=======
+        expand("results/{config_name}/jolideco/maps/{config_name}-result-jolideco.fits", config_name=config["chandra-data"]["name"])
+>>>>>>> 85a840b (Fix workflow file)
     default_target: True
