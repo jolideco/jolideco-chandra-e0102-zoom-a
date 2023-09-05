@@ -1,6 +1,6 @@
 rule run_jolideco:
     input:
-        expand("results/{{config_name}}/{obs_id}/maps/{{config_name}}-{obs_id}-counts.fits", obs_id=config["chandra-data"]["obs_ids"]),
+        expand("results/{{config_name}}/{obs_id}/maps-bootstrapped/{{config_name}}-{obs_id}-counts.fits", obs_id=config["chandra-data"]["obs_ids"]),
         expand("results/{{config_name}}/{obs_id}/maps/{{config_name}}-{obs_id}-{irf_label}-{psf_simulator}-psf.fits", obs_id=config["chandra-data"]["obs_ids"], psf_simulator=config["chandra-data"]["psf_simulator"], irf_label=list(config["chandra-data"]["irfs"])),
         expand("results/{{config_name}}/{obs_id}/maps/{{config_name}}-{obs_id}-exposure.fits", obs_id=config["chandra-data"]["obs_ids"]),
     log:
