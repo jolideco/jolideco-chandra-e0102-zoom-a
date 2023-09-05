@@ -9,4 +9,4 @@ rule bootstrap_events:
        filenames_counts = expand("results/{{config_name}}/{{obs_id}}/maps-bootstrapped/{{config_name}}-{{obs_id}}-iter-{idx}-counts.fits", idx=range(config["bootstrap"]["n_iter"])) 
 
     script:
-        "scripts/bootstrap_events.py"
+        "../scripts/bootstrap_events.py"
