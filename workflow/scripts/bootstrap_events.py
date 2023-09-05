@@ -79,8 +79,6 @@ def bin_events(events, geom):
 
 
 if __name__ == "__main__":
-    import snakemake
-
     filename_counts_in = snakemake.input.filename_counts
     filename_events_in = snakemake.input.filename_events
 
