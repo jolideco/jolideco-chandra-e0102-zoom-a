@@ -13,6 +13,7 @@ use rule * from chandra_data_workflow as chandra_data_*
 
 include: "rules/prepare-spectrum.smk"
 include: "rules/run-jolideco.smk"
+include: "rules/bootstrap-events.smk"
 
 N_ITER_EVENTS = 100
 
@@ -20,5 +21,6 @@ ruleorder: prepare_spectrum > chandra_data_fit_spectra
 
 rule all:
     input: 
-        expand("results/{config_name}/jolideco/{config_name}-result-jolideco.fits", config_name=config["chandra-data"]["name"])
+       expand("results/{config_name}/{obs_id}/events-bootstrapped/{config_name}-{obs_id}-iter-{idx}-events.fits", config_name=config["chandra-data"]["name"], obs_id=config["chandra-data"]["obs_ids"], idx=range(config["bootstrap"]["n_iter"])), 
+       expand("results/{config_name}/{obs_id}/maps-bootstrapped/{config_name}-{obs_id}-iter-{idx}-counts.fits", config_name=config["chandra-data"]["name"], obs_id=config["chandra-data"]["obs_ids"], idx=range(config["bootstrap"]["n_iter"])) 
     default_target: True
