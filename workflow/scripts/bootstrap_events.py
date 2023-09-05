@@ -36,6 +36,8 @@ def wcs_from_header_chandra(header, x_col=11):
 
 def read_event_list_chandra(filename, hdu="EVENTS"):
     """Read event list"""
+    log.info(f"Reading {filename}")
+
     hdu = fits.open(filename)[hdu]
     table = Table.read(hdu)
 
@@ -64,8 +66,6 @@ def read_roi_geom(filename):
 
 def select_events(filename, roi_geom):
     """Select events in ROI"""
-    log.info(f"Reading {filename}")
-    events = read_event_list_chandra(filename)
     selection = roi_geom.contains(events.radec)
     events_roi = events.table[selection]
     return events_roi
