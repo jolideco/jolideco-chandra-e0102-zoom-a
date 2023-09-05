@@ -86,7 +86,9 @@ if __name__ == "__main__":
     roi_geom = read_roi_geom(filename_counts_in)
     events_roi = select_events(events, roi_geom)
 
-    iter_files = zip(snakemake.output.filename_events, snakemake.output.filename_counts)
+    iter_files = zip(
+        snakemake.output.filenames_events, snakemake.output.filenames_counts
+    )
 
     for filename_events, filename_counts in iter_files:
         random_state = np.random.RandomState(snakemake.wildcards.obs_id)
