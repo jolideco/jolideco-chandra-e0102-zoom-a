@@ -91,7 +91,7 @@ if __name__ == "__main__":
     )
 
     for filename_events, filename_counts in iter_files:
-        random_state = np.random.RandomState(snakemake.wildcards.obs_id)
+        random_state = np.random.RandomState(int(snakemake.wildcards.obs_id))
 
         events_bootstrap = Table(
             random_state.choice(events_roi, size=len(events_roi), replace=True)
