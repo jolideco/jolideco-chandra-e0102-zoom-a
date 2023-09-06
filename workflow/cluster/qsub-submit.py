@@ -11,6 +11,7 @@ name_template = "-".join(job_properties["wildcards"].values())
 name = job_properties["rule"] + "-" + name_template
 
 ARGS = {
+    "-v": "JOLIDECO_GMM_LIBRARY",
     "-S": "/bin/bash",
     "-pe": "mthread 16",
     "-q": "sThC.q",
