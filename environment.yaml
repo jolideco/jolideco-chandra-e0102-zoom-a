@@ -1,13 +1,21 @@
 # Conda environment for reducing fermi data
-name: snakemake-workflow-template
+name: jolideco-chandra-e0102-zoom-a
 
 channels:
   - conda-forge
+  - bioconda
 
 variables:
   PYTHONNOUSERSITE: "1"
 
 dependencies:
-  - python=3.10
+  - python=3.9
   - snakemake>=6.4.1
   - pydantic>=1.9.0
+  - astropy>=5.0
+  - regions>=0.6
+  - gammapy>=1.0
+  - jupyter
+  - matplotlib
+  - numpy>=1.24
+
