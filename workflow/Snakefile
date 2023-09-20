@@ -14,10 +14,12 @@ use rule * from chandra_data_workflow as chandra_data_*
 include: "rules/prepare-spectrum.smk"
 include: "rules/bootstrap-events.smk"
 include: "rules/run-jolideco.smk"
+include: "rules/measure-profiles.smk"
 
 ruleorder: prepare_spectrum > chandra_data_fit_spectra
 
 rule all:
     input: 
-       expand("results/{config_name}/jolideco/iter-{idx}/{config_name}-iter-{idx}-result-jolideco.fits", config_name=config["chandra-data"]["name"], obs_id=config["chandra-data"]["obs_ids"], idx=range(config["bootstrap"]["n_iter"])), 
+        expand("results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-jolideco.fits", config_name=config["chandra-data"]["name"], idx=range(config["bootstrap"]["n_iter"])),
+        expand("results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-counts.fits", config_name=config["chandra-data"]["name"], idx=range(config["bootstrap"]["n_iter"])),
     default_target: True
