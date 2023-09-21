@@ -64,7 +64,7 @@ def read_roi_geom(filename):
     return Map.read(filename).geom
 
 
-def select_events(filename, roi_geom):
+def select_events(events, roi_geom):
     """Select events in ROI"""
     selection = roi_geom.contains(events.radec)
     events_roi = events.table[selection]
@@ -90,9 +90,9 @@ if __name__ == "__main__":
         snakemake.output.filenames_events, snakemake.output.filenames_counts
     )
 
-    for filename_events, filename_counts in iter_files:
-        random_state = np.random.RandomState(int(snakemake.wildcards.obs_id))
+    random_state = np.random.RandomState(int(snakemake.wildcards.obs_id))
 
+    for filename_events, filename_counts in iter_files:
         events_bootstrap = Table(
             random_state.choice(events_roi, size=len(events_roi), replace=True)
         )

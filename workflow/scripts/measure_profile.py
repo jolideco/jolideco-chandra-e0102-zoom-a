@@ -117,7 +117,9 @@ if __name__ == "__main__":
         snakemake.output.filename_jolideco_profile, overwrite=True
     )
 
-    filenames_events = snakemake.input.filename_events_bootstrap
+    filenames_events = list(snakemake.input.filename_events_bootstrap)
     counts = get_counts_image(filenames_events)
+
+    counts.write(snakemake.output.filename_counts_stacked, overwrite=True)
     profile_counts = measure_profile(image=counts)
     profile_counts.table.write(snakemake.output.filename_counts_profile, overwrite=True)

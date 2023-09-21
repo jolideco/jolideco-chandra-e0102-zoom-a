@@ -8,7 +8,8 @@ rule measure_profiles:
         "logs/{config_name}/iter-{idx}-measure-profiles.log",
     localrule: True
     output:
-       filename_jolideco_profile = "results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-jolideco.fits",
-       filename_counts_profile = "results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-counts.fits",
+        filename_jolideco_profile = "results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-jolideco.fits",
+        filename_counts_profile = "results/{config_name}/profiles/iter-{idx}/{config_name}-iter-{idx}-profile-counts.fits",
+        filename_counts_stacked = "results/{config_name}/counts-stacked/{config_name}-iter-{idx}-stacked-counts.fits",
     script:
         "../scripts/measure_profile.py"
