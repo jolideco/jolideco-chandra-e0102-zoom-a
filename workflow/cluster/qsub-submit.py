@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
+import logging
 import os
 import sys
+
+log = logging.getLogger(__name__)
 
 from snakemake.utils import read_job_properties
 
@@ -23,4 +26,6 @@ ARGS = {
 
 args = " ".join(f"{key} {value}" for key, value in ARGS.items())
 
-os.system(f"qsub {args} {jobscript}")
+cmd = f"qsub {args} {jobscript}"
+log.info(cmd)
+os.system(cmd)
