@@ -16,9 +16,9 @@ name = job_properties["rule"] + "-" + name_template
 ARGS = {
     "-v": "JOLIDECO_GMM_LIBRARY",
     "-S": "/bin/bash",
-    "-pe": "mthread 16",
+    "-pe": "mthread 8",
     "-q": "sThC.q",
-    "-l": "mres=64G,h_data=4G,h_vmem=4G",
+    "-l": "mres=64G,h_data=8G,h_vmem=8G",
     "-j": "y",
     "-N": f"{name}",
     "-M": "axel.donath@cfa.harvard.edu",
