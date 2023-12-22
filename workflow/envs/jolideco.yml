@@ -1,0 +1,13 @@
+name: jolideco
+
+channels:
+  - conda-forge
+  - pytorch
+
+dependencies:
+  - python=3.9
+  - jupyter
+  - torch>2.0
+  - cpuonly
+  - pip:
+    - git+https://github.com/jolideco/jolideco
