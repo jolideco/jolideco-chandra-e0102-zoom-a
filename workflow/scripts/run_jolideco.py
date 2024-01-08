@@ -238,31 +238,17 @@ datasets_train = split_datasets_validation(datasets_jolideco, n_validation=0)
 # In[ ]:
 
 
-deconvolvers = [
-    MAPDeconvolver(n_epochs=100, learning_rate=0.1, beta=1.0),
-    MAPDeconvolver(n_epochs=100, learning_rate=0.01, beta=1.0),
-    MAPDeconvolver(n_epochs=50, learning_rate=0.001, beta=1.0),
-]
+deconvolver = MAPDeconvolver(n_epochs=250, learning_rate=0.1, beta=1.0)
 
 
 # In[ ]:
 
 
-results = []
-
-for idx, deco in enumerate(deconvolvers):
-    if idx == 1:
-        components["e0102"].prior.cycle_spin = False
-
-    if idx == 2:
-        components["e0102"].prior.cycle_spin_subpix = False
-
-    result = deco.run(
-        components=components,
-        calibrations=calibrations,
-        **datasets_train,
-    )
-    results.append(result)
+result = deconvolver.run(
+    components=components,
+    calibrations=calibrations,
+    **datasets_train,
+)
 
 result.write(filename_jolideco_result, overwrite=True)
 
